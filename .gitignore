@@ -1,2 +1,7 @@
+# Python
 __pycache__
 .python-version
+
+# Terraform
+.terraform
+*.tfvars
