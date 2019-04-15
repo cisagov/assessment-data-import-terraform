@@ -2,7 +2,59 @@
 
 [![Build Status](https://travis-ci.com/cisagov/assessment-data-import-terraform.svg?branch=develop)](https://travis-ci.com/cisagov/assessment-data-import-terraform)
 
+## About ##
+
 This project creates the resources used to import assessment data into AWS.
+
+## Requirements ##
+
+* [AWS CLI access
+  configured](
+  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+  on your system
+* [Terraform installed](
+  https://learn.hashicorp.com/terraform/getting-started/install.html)
+  on your system
+
+## Customizing Your Environment ##
+
+Create a terraform variables file to be used for your environment (e.g.
+  `production.yml`), based on the variables listed in `variables.tf`.
+  Here is a sample of what that file might look like:
+
+```
+aws_region = "us-east-1"
+
+aws_availability_zone = "a"
+
+tags = {
+  Team = "CISA Development Team"
+  Application = "Assessment Data Import"
+  Workspace = "production"
+}
+```
+
+## Building the Terraform-based infrastructure ##
+
+The Terraform-based infrastructure is built like so:
+```
+# If you have not created your terraform workspace:
+terraform workspace create <your_workspace>
+
+# If you have previously created your terraform workspace:
+terraform workspace select <your_workspace>
+
+terraform init
+terraform apply -var-file=<your_workspace>.yml
+```
+
+## Tearing down the Terraform-based infrastructure ##
+
+The Terraform-based infrastructure is torn down like so:
+```
+terraform workspace select <your_workspace>
+terraform destroy -var-file=<your_workspace>.yml
+```
 
 ## Contributing ##
 
