@@ -22,7 +22,7 @@ Create a terraform variables file to be used for your environment (e.g.
   `production.yml`), based on the variables listed in `variables.tf`.
   Here is a sample of what that file might look like:
 
-```
+```yaml
 aws_region = "us-east-1"
 
 aws_availability_zone = "a"
@@ -37,7 +37,8 @@ tags = {
 ## Building the Terraform-based infrastructure ##
 
 The Terraform-based infrastructure is built like so:
-```
+
+```bash
 terraform init
 
 # If you have not created your terraform workspace:
@@ -52,7 +53,8 @@ terraform apply -var-file=<your_workspace>.yml
 ## Tearing down the Terraform-based infrastructure ##
 
 The Terraform-based infrastructure is torn down like so:
-```
+
+```bash
 terraform workspace select <your_workspace>
 terraform destroy -var-file=<your_workspace>.yml
 ```
