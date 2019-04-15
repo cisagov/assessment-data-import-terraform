@@ -38,13 +38,14 @@ tags = {
 
 The Terraform-based infrastructure is built like so:
 ```
+terraform init
+
 # If you have not created your terraform workspace:
-terraform workspace create <your_workspace>
+terraform workspace new <your_workspace>
 
 # If you have previously created your terraform workspace:
 terraform workspace select <your_workspace>
 
-terraform init
 terraform apply -var-file=<your_workspace>.yml
 ```
 
