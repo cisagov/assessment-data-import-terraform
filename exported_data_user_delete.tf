@@ -19,11 +19,11 @@ data "aws_iam_policy_document" "exported_data_delete_doc" {
     effect = "Allow"
 
     actions = [
-      "s3:ListBucket"
+      "s3:ListBucket",
     ]
 
     resources = [
-      "${aws_s3_bucket.exported_data.arn}"
+      "${aws_s3_bucket.exported_data.arn}",
     ]
   }
 
@@ -32,17 +32,17 @@ data "aws_iam_policy_document" "exported_data_delete_doc" {
 
     actions = [
       "s3:GetObject",
-      "s3:DeleteObject"
+      "s3:DeleteObject",
     ]
 
     resources = [
-      "${aws_s3_bucket.exported_data.arn}/*"
+      "${aws_s3_bucket.exported_data.arn}/*",
     ]
   }
 }
 
 # The S3 policy for our role
 resource "aws_iam_user_policy" "exported_data_delete_policy" {
-  user = "${aws_iam_user.exported_data_delete.name}"
+  user   = "${aws_iam_user.exported_data_delete.name}"
   policy = "${data.aws_iam_policy_document.exported_data_delete_doc.json}"
 }

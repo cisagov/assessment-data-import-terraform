@@ -19,17 +19,17 @@ data "aws_iam_policy_document" "exported_data_write_doc" {
     effect = "Allow"
 
     actions = [
-      "s3:PutObject"
+      "s3:PutObject",
     ]
 
     resources = [
-      "${aws_s3_bucket.exported_data.arn}/*"
+      "${aws_s3_bucket.exported_data.arn}/*",
     ]
   }
 }
 
 # The S3 policy for our role
 resource "aws_iam_user_policy" "exported_data_write_policy" {
-  user = "${aws_iam_user.exported_data_write.name}"
+  user   = "${aws_iam_user.exported_data_write.name}"
   policy = "${data.aws_iam_policy_document.exported_data_write_doc.json}"
 }
