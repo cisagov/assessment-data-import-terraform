@@ -34,6 +34,21 @@ tags = {
 }
 ```
 
+## Terraform Documentation ##
+
+<!-- markdownlint-disable MD003 MD013 MD022 -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | string | `"a"` | no |
+| aws\_region | The AWS region to deploy into (e.g. us-east-1). | string | `"us-east-1"` | no |
+| tags | Tags to apply to all AWS resources created | map | `{}` | no |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- markdownlint-enable MD003 MD013 MD022 -->
+
 ## Building the Terraform-based infrastructure ##
 
 The Terraform-based infrastructure is built like so:
