@@ -2,7 +2,7 @@ resource "aws_iam_user" "exported_data_write" {
   # We name the user based on the bucket name (which is based on the
   # terraform workspace name) to avoid name conflicts when deploying to
   # different workspaces
-  name = "${format("%s-write-%s", aws_s3_bucket.exported_data.id, terraform.workspace)}"
+  name = "${format("%s-write", aws_s3_bucket.exported_data.id)}"
 
   lifecycle {
     prevent_destroy = true
