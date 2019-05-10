@@ -13,3 +13,15 @@ variable "tags" {
   description = "Tags to apply to all AWS resources created"
   default     = {}
 }
+
+variable "assessment_data_s3_bucket" {
+  type        = "string"
+  description = "The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name."
+  default     = ""
+}
+
+variable "assessment_data_import_lambda_s3_bucket" {
+  type        = "string"
+  description = "The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name."
+  default     = ""
+}
