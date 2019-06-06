@@ -36,7 +36,7 @@ tags = {
 
 ## Terraform Documentation ##
 
-<!-- markdownlint-disable MD003 MD013 MD022 -->
+<!-- markdownlint-disable MD003 MD013 MD022 MD033 -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
@@ -49,7 +49,7 @@ tags = {
 | tags | Tags to apply to all AWS resources created | map | `{}` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- markdownlint-enable MD003 MD013 MD022 -->
+<!-- markdownlint-enable MD003 MD013 MD022 MD033 -->
 
 ## Building the Terraform-based infrastructure ##
 

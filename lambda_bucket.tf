@@ -4,7 +4,11 @@ resource "aws_s3_bucket" "adi_lambda" {
   # Note that in production terraform workspaces, the string '-production' is
   # appended to the bucket name.  In non-production workspaces,
   # '-<workspace_name>' is appended to the bucket name.
-  bucket = "${local.production_workspace ? format("%s-production", var.assessment_data_import_lambda_s3_bucket) : format("%s-%s", var.assessment_data_import_lambda_s3_bucket, terraform.workspace)}"
+  bucket = local.production_workspace ? format("%s-production", var.assessment_data_import_lambda_s3_bucket) : format(
+    "%s-%s",
+    var.assessment_data_import_lambda_s3_bucket,
+    terraform.workspace,
+  )
 
   server_side_encryption_configuration {
     rule {
@@ -14,7 +18,12 @@ resource "aws_s3_bucket" "adi_lambda" {
     }
   }
 
-  tags = "${merge(var.tags, map("Name", "Assessment Data Import Lambda"))}"
+  tags = merge(
+    var.tags,
+    {
+      "Name" = "Assessment Data Import Lambda"
+    },
+  )
 
   lifecycle {
     prevent_destroy = true

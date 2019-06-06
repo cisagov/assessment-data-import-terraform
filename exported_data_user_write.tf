@@ -2,7 +2,7 @@ resource "aws_iam_user" "exported_data_write" {
   # We name the user based on the bucket name (which is based on the
   # terraform workspace name) to avoid name conflicts when deploying to
   # different workspaces
-  name = "${format("%s-write", aws_s3_bucket.exported_data.id)}"
+  name = format("%s-write", aws_s3_bucket.exported_data.id)
 
   lifecycle {
     prevent_destroy = true
@@ -10,7 +10,7 @@ resource "aws_iam_user" "exported_data_write" {
 }
 
 resource "aws_iam_access_key" "exported_data_write" {
-  user = "${aws_iam_user.exported_data_write.name}"
+  user = aws_iam_user.exported_data_write.name
 }
 
 # IAM policy document that that allows write permissions on the export
@@ -31,6 +31,6 @@ data "aws_iam_policy_document" "exported_data_write_doc" {
 
 # The S3 policy for our role
 resource "aws_iam_user_policy" "exported_data_write_policy" {
-  user   = "${aws_iam_user.exported_data_write.name}"
-  policy = "${data.aws_iam_policy_document.exported_data_write_doc.json}"
+  user   = aws_iam_user.exported_data_write.name
+  policy = data.aws_iam_policy_document.exported_data_write_doc.json
 }
