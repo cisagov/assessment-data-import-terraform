@@ -32,6 +32,13 @@ tags = {
   Application = "Assessment Data Import"
   Workspace = "production"
 }
+
+# In production workspaces, "-production" is automatically appended to the
+# bucket names below
+# In non-production workspaces, "-{workspace_name}" is automatically appended
+# to the bucket names below
+assessment_data_s3_bucket               = "assessment-data"
+assessment_data_import_lambda_s3_bucket = "assessment-data-import-lambda"
 ```
 
 ## Terraform Documentation ##
