@@ -8,6 +8,11 @@ This project creates the resources used to import assessment data into AWS.
 
 ## Requirements ##
 
+| Name | Version |
+|------|---------|
+| terraform | ~> 0.12.0 |
+| aws | ~> 2.0 |
+
 * [AWS CLI access
   configured](
   https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
@@ -38,15 +43,26 @@ tags = {
 
 <!-- markdownlint-disable MD003 MD013 MD022 MD033 -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Inputs
+
+## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| assessment\_data\_import\_lambda\_s3\_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | string | `""` | no |
-| assessment\_data\_s3\_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | string | `""` | no |
-| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | string | `"a"` | no |
-| aws\_region | The AWS region to deploy into (e.g. us-east-1). | string | `"us-east-1"` | no |
-| tags | Tags to apply to all AWS resources created | map | `{}` | no |
+| assessment\_data\_import\_lambda\_s3\_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `""` | no |
+| assessment\_data\_s3\_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `""` | no |
+| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | `string` | `a` | no |
+| aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `us-east-1` | no |
+| tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
+
+## Outputs ##
+
+| Name | Description |
+|------|-------------|
+| arn | The EC2 instance ARN |
+| availability\_zone | The AZ where the EC2 instance is deployed |
+| id | The EC2 instance ID |
+| private\_ip | The private IP of the EC2 instance |
+| subnet\_id | The ID of the subnet where the EC2 instance is deployed |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- markdownlint-enable MD003 MD013 MD022 MD033 -->
