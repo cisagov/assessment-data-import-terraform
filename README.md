@@ -76,6 +76,12 @@ terraform workspace select <your_workspace>
 terraform destroy -var-file=<your_workspace>.yml
 ```
 
+## Notes ##
+
+Running `pre-commit` requires running `terraform init` in every directory that
+contains Terraform code. In this repository, these are the main directory and
+every directory under `examples/`.
+
 ## Contributing ##
 
 We welcome contributions!  Please see [here](CONTRIBUTING.md) for
@@ -83,7 +89,7 @@ details.
 
 ## License ##
 
-This project is in the worldwide [public domain](LICENSE.md).
+This project is in the worldwide [public domain](LICENSE).
 
 This project is in the public domain within the United States, and
 copyright and related rights in the work worldwide are waived through
