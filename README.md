@@ -54,16 +54,6 @@ tags = {
 | aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `us-east-1` | no |
 | tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
 
-## Outputs ##
-
-| Name | Description |
-|------|-------------|
-| arn | The EC2 instance ARN |
-| availability\_zone | The AZ where the EC2 instance is deployed |
-| id | The EC2 instance ID |
-| private\_ip | The private IP of the EC2 instance |
-| subnet\_id | The ID of the subnet where the EC2 instance is deployed |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 <!-- markdownlint-enable MD003 MD013 MD022 MD033 -->
 

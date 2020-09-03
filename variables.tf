@@ -16,11 +16,6 @@ variable "aws_availability_zone" {
   default     = "a"
 }
 
-variable "subnet_id" {
-  type        = string
-  description = "The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0)"
-}
-
 # ------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS
 #
