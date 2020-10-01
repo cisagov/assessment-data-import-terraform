@@ -2,9 +2,59 @@
 
 [![Build Status](https://travis-ci.com/cisagov/assessment-data-import-terraform.svg?branch=develop)](https://travis-ci.com/cisagov/assessment-data-import-terraform)
 
-## About ##
-
 This project creates the resources used to import assessment data into AWS.
+
+## Pre-requisites ##
+
+- [Terraform](https://www.terraform.io/) installed on your system.
+- AWS CLI access
+  [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+  for the appropriate account on your system.
+- An accessible AWS S3 bucket to store Terraform state
+  (specified [here](backend.tf)).
+- An accessible AWS DynamoDB database to store the Terraform state lock
+  (specified [here](backend.tf)).
+
+## Customizing Your Environment ##
+
+Create a terraform variables file to be used for your environment (e.g.
+  `production.tfvars`), based on the variables listed in [Inputs](#Inputs)
+  below. Here is a sample of what that file might look like:
+
+```hcl
+aws_region = "us-east-2"
+
+tags = {
+  Team = "CISA Development Team"
+  Application = "Assessment Data Import"
+  Workspace = "production"
+}
+```
+
+## Building the Terraform-based infrastructure ##
+
+1. Create a Terraform workspace (if you haven't already done so) by running:
+
+   ```console
+   terraform workspace new <workspace_name>`
+   ```
+
+1. Create a `<workspace_name>.tfvars` file with all of the required
+   variables and any optional variables desired (see [Inputs](#Inputs) below
+   for details).
+1. Run the command `terraform init`.
+1. Create the Terraform infrastructure by running the command:
+
+   ```console
+   terraform apply -var-file=<workspace_name>.tfvars
+   ```
+
+## Tearing down the Terraform-based infrastructure ##
+
+1. Select the appropriate Terraform workspace by running
+   `terraform workspace select <workspace_name>`.
+1. Destroy the Terraform infrastruce in that workspace by running
+   `terraform destroy -var-file=<workspace_name>.tfvars`.
 
 ## Requirements ##
 
@@ -13,81 +63,25 @@ This project creates the resources used to import assessment data into AWS.
 | terraform | ~> 0.12.0 |
 | aws | ~> 2.0 |
 
-* [AWS CLI access
-  configured](
-  https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-  on your system
-* [Terraform installed](
-  https://learn.hashicorp.com/terraform/getting-started/install.html)
-  on your system
+## Providers ##
 
-## Customizing Your Environment ##
-
-Create a terraform variables file to be used for your environment (e.g.
-  `production.yml`), based on the variables listed in `variables.tf`.
-  Here is a sample of what that file might look like:
-
-```yaml
-aws_region = "us-east-1"
-
-aws_availability_zone = "a"
-
-tags = {
-  Team = "CISA Development Team"
-  Application = "Assessment Data Import"
-  Workspace = "production"
-}
-
-# In production workspaces, "-production" is automatically appended to the
-# bucket names below
-# In non-production workspaces, "-{workspace_name}" is automatically appended
-# to the bucket names below
-assessment_data_s3_bucket               = "assessment-data"
-assessment_data_import_lambda_s3_bucket = "assessment-data-import-lambda"
-```
-
-## Terraform Documentation ##
-
-<!-- markdownlint-disable MD003 MD013 MD022 MD033 -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+| Name | Version |
+|------|---------|
+| aws | ~> 2.0 |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| assessment\_data\_import\_lambda\_s3\_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `""` | no |
-| assessment\_data\_s3\_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `""` | no |
-| aws\_availability\_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.). | `string` | `a` | no |
-| aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `us-east-1` | no |
+|------|-------------|------|---------|:--------:|
+| assessment_data_import_lambda_s3_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `assessment-data-import-lambda` | no |
+| assessment_data_s3_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `assessment-data` | no |
+| aws_availability_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.) | `string` | `a` | no |
+| aws_region | The AWS region to deploy into (e.g. us-east-1) | `string` | `us-east-1` | no |
 | tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
 
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- markdownlint-enable MD003 MD013 MD022 MD033 -->
+## Outputs ##
 
-## Building the Terraform-based infrastructure ##
-
-The Terraform-based infrastructure is built like so:
-
-```bash
-terraform init
-
-# If you have not created your terraform workspace:
-terraform workspace new <your_workspace>
-
-# If you have previously created your terraform workspace:
-terraform workspace select <your_workspace>
-
-terraform apply -var-file=<your_workspace>.yml
-```
-
-## Tearing down the Terraform-based infrastructure ##
-
-The Terraform-based infrastructure is torn down like so:
-
-```bash
-terraform workspace select <your_workspace>
-terraform destroy -var-file=<your_workspace>.yml
-```
+No output.
 
 ## Notes ##
 
