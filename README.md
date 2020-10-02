@@ -11,9 +11,9 @@ This project creates the resources used to import assessment data into AWS.
   [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
   for the appropriate account on your system.
 - An accessible AWS S3 bucket to store Terraform state
-  (specified [here](backend.tf)).
+  (specified in [`backend.tf`](backend.tf)).
 - An accessible AWS DynamoDB database to store the Terraform state lock
-  (specified [here](backend.tf)).
+  (specified in [`backend.tf`](backend.tf)).
 
 ## Customizing Your Environment ##
 
