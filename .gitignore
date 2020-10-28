@@ -5,3 +5,4 @@ __pycache__
 *.tfvars
 terraform.tfstate
 terraform.tfstate.backup
+*.tfvars
