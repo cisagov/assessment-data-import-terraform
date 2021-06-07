@@ -61,26 +61,42 @@ tags = {
 | Name | Version |
 |------|---------|
 | terraform | ~> 0.12.0 |
-| aws | ~> 3.0 |
+| aws | ~> 3.38 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.0 |
+| aws | ~> 3.38 |
+
+## Modules ##
+
+No modules.
+
+## Resources ##
+
+| Name | Type |
+|------|------|
+| [aws_iam_access_key.exported_data_write](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key) | resource |
+| [aws_iam_user.exported_data_write](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user_policy.exported_data_write_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
+| [aws_s3_bucket.adi_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket.exported_data](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.exported_data_write_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| assessment_data_import_lambda_s3_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `assessment-data-import-lambda` | no |
-| assessment_data_s3_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace_name>' will be appended to the bucket name. | `string` | `assessment-data` | no |
-| aws_region | The AWS region to deploy into (e.g. us-east-1) | `string` | `us-east-1` | no |
-| tags | Tags to apply to all AWS resources created | `map(string)` | `{}` | no |
+| assessment\_data\_import\_lambda\_s3\_bucket | The name of the bucket where the assessment data import lambda function will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace\_name>' will be appended to the bucket name. | `string` | `"assessment-data-import-lambda"` | no |
+| assessment\_data\_s3\_bucket | The name of the bucket where the assessment data JSON file will be stored.  Note that in production terraform workspaces, the string '-production' will be appended to the bucket name.  In non-production workspaces, '-<workspace\_name>' will be appended to the bucket name. | `string` | `"assessment-data"` | no |
+| aws\_region | The AWS region to deploy into (e.g. us-east-1). | `string` | `"us-east-1"` | no |
+| tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 
 ## Outputs ##
 
-No output.
+No outputs.
 
 ## Notes ##
 

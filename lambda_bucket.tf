@@ -18,12 +18,9 @@ resource "aws_s3_bucket" "adi_lambda" {
     }
   }
 
-  tags = merge(
-    var.tags,
-    {
-      "Name" = "Assessment Data Import Lambda"
-    },
-  )
+  tags = {
+    "Name" = "Assessment Data Import Lambda"
+  }
 
   lifecycle {
     prevent_destroy = true
