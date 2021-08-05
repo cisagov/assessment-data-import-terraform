@@ -53,7 +53,7 @@ tags = {
 
 1. Select the appropriate Terraform workspace by running
    `terraform workspace select <workspace_name>`.
-1. Destroy the Terraform infrastruce in that workspace by running
+1. Destroy the Terraform infrastructure in that workspace by running
    `terraform destroy -var-file=<workspace_name>.tfvars`.
 
 ## Requirements ##
