@@ -35,3 +35,14 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "adi_lambda" {
     }
   }
 }
+
+# This blocks ANY public access to the bucket or the objects it
+# contains, even if misconfigured to allow public access.
+resource "aws_s3_bucket_public_access_block" "adi_lambda" {
+  bucket = aws_s3_bucket.adi_lambda.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
