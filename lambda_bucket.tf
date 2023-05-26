@@ -46,3 +46,15 @@ resource "aws_s3_bucket_public_access_block" "adi_lambda" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
+# Any objects placed into this bucket should be owned by the bucket
+# owner. This ensures that even if objects are added by a different
+# account, the bucket-owning account retains full control over the
+# objects stored in this bucket.
+resource "aws_s3_bucket_ownership_controls" "adi_lambda" {
+  bucket = aws_s3_bucket.adi_lambda.id
+
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
