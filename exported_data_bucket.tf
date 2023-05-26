@@ -1,7 +1,7 @@
+# This bucket is used to store a JSON file containing all exported
+# assessment data to be imported into the CyHy database.
 resource "aws_s3_bucket" "exported_data" {
-  # This bucket is used to store a JSON file containing all exported
-  # assessment data to be imported into our AWS database.
-  # Note that in production terraform workspaces, the string '-production' is
+  # Note that in production Terraform workspaces, the string '-production' is
   # appended to the bucket name.  In non-production workspaces,
   # '-<workspace_name>' is appended to the bucket name.
   bucket = format("%s-%s", var.assessment_data_s3_bucket, local.production_workspace ? "production" : terraform.workspace)

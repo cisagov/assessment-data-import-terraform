@@ -1,7 +1,8 @@
+# This bucket is used to store the deployment package of the Lambda function
+# that imports assessment data from the exported_data bucket into the CyHy
+# database.
 resource "aws_s3_bucket" "adi_lambda" {
-  # This bucket is used to store the lambda function that imports assessment
-  # data from the exported_data bucket into the CyHy database.
-  # Note that in production terraform workspaces, the string '-production' is
+  # Note that in production Terraform workspaces, the string '-production' is
   # appended to the bucket name.  In non-production workspaces,
   # '-<workspace_name>' is appended to the bucket name.
   bucket = format("%s-%s", var.assessment_data_import_lambda_s3_bucket, local.production_workspace ? "production" : terraform.workspace)
