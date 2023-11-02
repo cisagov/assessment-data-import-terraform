@@ -61,13 +61,13 @@ tags = {
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.0 |
-| aws | ~> 3.75 |
+| aws | ~> 4.9 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.75 |
+| aws | ~> 4.9 |
 
 ## Modules ##
 
