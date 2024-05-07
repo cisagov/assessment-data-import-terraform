@@ -17,12 +17,10 @@ resource "aws_iam_access_key" "exported_data_write" {
 # bucket.  This will be applied to the exported_data_write role.
 data "aws_iam_policy_document" "exported_data_write_doc" {
   statement {
-    effect = "Allow"
-
     actions = [
       "s3:PutObject",
     ]
-
+    effect = "Allow"
     resources = [
       "${aws_s3_bucket.exported_data.arn}/*",
     ]
@@ -31,6 +29,6 @@ data "aws_iam_policy_document" "exported_data_write_doc" {
 
 # The S3 policy for our role
 resource "aws_iam_user_policy" "exported_data_write_policy" {
-  user   = aws_iam_user.exported_data_write.name
   policy = data.aws_iam_policy_document.exported_data_write_doc.json
+  user   = aws_iam_user.exported_data_write.name
 }

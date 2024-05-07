@@ -35,10 +35,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "exported_data" {
 # This blocks ANY public access to the bucket or the objects it
 # contains, even if misconfigured to allow public access.
 resource "aws_s3_bucket_public_access_block" "exported_data" {
-  bucket = aws_s3_bucket.exported_data.id
-
   block_public_acls       = true
   block_public_policy     = true
+  bucket                  = aws_s3_bucket.exported_data.id
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
