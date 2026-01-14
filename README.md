@@ -1,6 +1,8 @@
 # assessment-data-import-terraform #
 
-[![Build Status](https://travis-ci.com/cisagov/assessment-data-import-terraform.svg?branch=develop)](https://travis-ci.com/cisagov/assessment-data-import-terraform)
+[![GitHub Build Status](https://github.com/cisagov/assessment-data-import-terraform/workflows/build/badge.svg)](https://github.com/cisagov/assessment-data-import-terraform/actions)
+[![License](https://img.shields.io/github/license/cisagov/assessment-data-import-terraform)](https://spdx.org/licenses/)
+[![CodeQL](https://github.com/cisagov/assessment-data-import-terraform/workflows/CodeQL/badge.svg)](https://github.com/cisagov/assessment-data-import-terraform/actions/workflows/codeql-analysis.yml)
 
 This project creates the resources used to import assessment data into AWS.
 
